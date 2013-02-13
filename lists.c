@@ -90,3 +90,22 @@ void print(struct node* head) {
     printf("\n");
 }
 
+
+
+/*
+ * Problem 1 - Count
+ * Simply counts the number of times that seartchFor is in the list
+ */
+int Count(struct node* head, int searchFor) {
+    int itemCount = 0;
+    struct node* current = head;
+
+    while (current != NULL) {
+        if (searchFor == current->data) {
+            itemCount++;
+        }
+        current = current->next;
+    }
+    return itemCount;
+}
+

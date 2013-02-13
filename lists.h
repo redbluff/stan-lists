@@ -24,3 +24,6 @@ struct node* BuildOneTwoThree(); //Builds a list 1, 2, 3
 void push(struct node** headRef, int newData); //Pushes a new node in at the ref
 void print(struct node* head); // Prints space sperated list
 
+//Problem 1 - Count
+int Count(struct node* head, int searchFor);
+

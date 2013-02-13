@@ -50,10 +50,33 @@ void testBuildOneTwoThree(void) {
 
     assert(head != NULL);
     assert(length(head) == 3);
+    printf("BuildOneTwoThree list is: ");
     print(head);
 }
 
 
+/*
+ * testCount 
+ * Tests the count item routine
+ */
+void testCount(void) {
+    struct node* head = BuildOneTwoThree();
+    assert(Count(head, 42) == 0);
+
+    push(&head, 42);
+    assert(Count(head, 42) == 1);
+    push(&head, 2);
+    assert(Count(head, 2) == 2);
+    push(&head, 42);
+    assert(Count(head, 42) == 2);
+    push(&head, 42);
+    assert(Count(head, 42) == 3);
+
+    assert(!Count(NULL, 0));
+    printf("Count function tested OK\n");
+}
+
+    
 /*
  * main
  * main program - duh
@@ -65,6 +88,7 @@ int main(char *argv[], int argc) {
     testPush();
     testBuildOneTwoThree();
 
+    testCount();
     printf("Ended uteTest.c\n");
     return 0;
 }
