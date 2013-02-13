@@ -39,6 +39,7 @@ void testPush() {
     assert(head->next == NULL);
     assert(head->data == 42);
     assert(length(head) == 1);
+    DeleteList(&head);
 }
 
 
@@ -52,6 +53,7 @@ void testBuildOneTwoThree(void) {
     assert(length(head) == 3);
     printf("BuildOneTwoThree list is: ");
     print(head);
+    DeleteList(&head);
 }
 
 
@@ -74,6 +76,7 @@ void testCount(void) {
 
     assert(!Count(NULL, 0));
     printf("Count function tested OK\n");
+    DeleteList(&head);
 }
 
    
@@ -95,6 +98,7 @@ void testGetNth(void) {
     assert(GetNth(head, 3) == 3);
     assert(GetNth(head, 0) == 42);
     printf("End test GetNth.\n");
+    DeleteList(&head);
 }
 
 
