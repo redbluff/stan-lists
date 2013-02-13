@@ -103,7 +103,7 @@ void testGetNth(void) {
  * main
  * main program - duh
  */
-int main(char *argv[], int argc) {
+int main(int argc, char** argv) {
     printf("Starting uteTest.c\n");
 
     testEmptyList();
