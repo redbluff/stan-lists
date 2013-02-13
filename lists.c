@@ -146,3 +146,25 @@ void DeleteList(struct node** headRef) {
     }
 }
 
+
+
+/*
+ * Pop
+ * Pops the head of the list and returns the data
+ *
+ * Asserts on NULL list. Assumes nodes allocated by MALLOC and that FREE always
+ * works.
+ */
+int Pop(struct node** headRef) {
+    struct node* current = *headRef;
+
+    //This should be better but is OK for our purposes
+    assert(current != NULL);
+
+    int retval = current->data;
+    *headRef = current->next;
+    free(current);
+    return retval;
+}
+
+

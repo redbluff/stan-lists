@@ -32,3 +32,6 @@ int GetNth(struct node* head, int index);
 
 //Problem 3 - DeleteList
 void DeleteList(struct node** headRef);
+
+//Problem 4 - Pop
+int Pop(struct node** headRef);

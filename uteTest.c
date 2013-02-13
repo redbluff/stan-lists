@@ -120,6 +120,25 @@ void testDeleteList(void) {
 
     
 /*
+ * testPop
+ * Tests the POP functions, but not the NULL assert
+ */
+void testPop(void) {
+    printf("Entering testPop.\n");
+    struct node* list = BuildOneTwoThree();
+    printf("List before pop... ");
+    print(list);
+    printf("Pop value is %d\n", Pop(&list)); 
+    assert(length(list) == 2);
+    printf("List now is (should be '2 3'): ");
+    print(list);
+    DeleteList(&list);
+    printf("End testPop.\n");
+}
+
+
+
+/*
  * main
  * main program - duh
  */
@@ -133,6 +152,7 @@ int main(int argc, char** argv) {
     testCount();
     testGetNth();
     testDeleteList();
+    testPop();
     printf("Ended uteTest.c\n");
     return 0;
 }
