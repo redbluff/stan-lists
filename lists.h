@@ -27,3 +27,6 @@ void print(struct node* head); // Prints space sperated list
 //Problem 1 - Count
 int Count(struct node* head, int searchFor);
 
+//Problem 2 - GetNth
+int GetNth(struct node* head, int index);
+

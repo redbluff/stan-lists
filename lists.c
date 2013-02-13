@@ -109,3 +109,27 @@ int Count(struct node* head, int searchFor) {
     return itemCount;
 }
 
+
+/*
+ * GetNth - Get the Nth item and return its data.
+ *          If the list is empty or the index is too large, print and return 0.
+ *          This is less than optimal, but I don't want to stop the run on
+ *          testing.
+ *
+ *          C indexing is used for node access.
+ */
+int GetNth(struct node* head, int index) {
+    int len = length(head);
+    if (!len || len <= index) {
+        printf("Index is invalid, length of list %d, index %d\n",len, index);
+        return 0;
+    }
+    struct node* current = head;
+    for (int i = 0; i < index; i++) {
+        current = current->next;
+    }
+    return current->data;
+}
+
+
+

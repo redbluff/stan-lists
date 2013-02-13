@@ -76,6 +76,28 @@ void testCount(void) {
     printf("Count function tested OK\n");
 }
 
+   
+
+/*
+ * testGetNth
+ * Basic tests for GetNth
+ */
+void testGetNth(void) {
+    printf("Testing GetNth, should produce two error messages.\n");
+
+    struct node* head = NULL;
+    assert (!GetNth(head, 42));
+    head = BuildOneTwoThree();
+    assert(!GetNth(head, 42));
+
+    assert(GetNth(head, 1) == 2);
+    push(&head, 42);
+    assert(GetNth(head, 3) == 3);
+    assert(GetNth(head, 0) == 42);
+    printf("End test GetNth.\n");
+}
+
+
     
 /*
  * main
@@ -89,6 +111,7 @@ int main(char *argv[], int argc) {
     testBuildOneTwoThree();
 
     testCount();
+    testGetNth();
     printf("Ended uteTest.c\n");
     return 0;
 }
