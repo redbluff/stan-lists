@@ -98,6 +98,22 @@ void testGetNth(void) {
 }
 
 
+/*
+ * testDeleteList
+ * Test various basic list deletions
+ */
+void testDeleteList(void) {
+    printf("Start testDeleteList.\n");
+    struct node* list = NULL;
+    DeleteList(&list);
+    assert(list == NULL);
+
+    list = BuildOneTwoThree();
+    DeleteList(&list);
+    assert(list == NULL);
+    printf("End testDeleteList.\n");
+}
+
     
 /*
  * main
@@ -112,6 +128,7 @@ int main(int argc, char** argv) {
 
     testCount();
     testGetNth();
+    testDeleteList();
     printf("Ended uteTest.c\n");
     return 0;
 }

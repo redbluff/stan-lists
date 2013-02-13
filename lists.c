@@ -132,4 +132,17 @@ int GetNth(struct node* head, int index) {
 }
 
 
+/*
+ * DeleteList
+ * Walks the list and deletes all nodes, setting head to NULL
+ * Assumes that nodes are allocated by MALLOC and FREE always works
+ */
+void DeleteList(struct node** headRef) {
+    struct node* current = *headRef;
+    while(current != NULL) {
+        *headRef = current->next;
+        free(current);
+        current = *headRef;
+    }
+}
 

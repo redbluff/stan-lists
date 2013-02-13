@@ -30,3 +30,5 @@ int Count(struct node* head, int searchFor);
 //Problem 2 - GetNth
 int GetNth(struct node* head, int index);
 
+//Problem 3 - DeleteList
+void DeleteList(struct node** headRef);
