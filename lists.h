@@ -35,3 +35,6 @@ void DeleteList(struct node** headRef);
 
 //Problem 4 - Pop
 int Pop(struct node** headRef);
+
+//Problem 5 - InsertNth
+void InsertNth(struct node** headRef, int index, int data);

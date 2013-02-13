@@ -168,3 +168,33 @@ int Pop(struct node** headRef) {
 }
 
 
+/*
+ * InsertNth
+ * Inserts the data at the Nth index of the updated list.
+ *
+ * If index is too large prints a message and returns without changing the list
+ */
+void InsertNth(struct node** headRef, int index, int data) {
+    int len = length(*headRef);
+    if (index > len) { 
+        printf("Index is too large for list, list size %d, index %d.\n", len, index);
+        return;
+    }
+
+    struct node* current = *headRef;
+
+    //Two cases, if index is 0, simply push it. If not, then walk the list
+    if (!index) {
+        push(headRef, data);
+    } else {
+        struct node* prev;
+        for (int i = 0; i < index; i++) {
+            prev = current;
+            current = current->next;
+        }
+        push(&current, data);
+        prev->next = current;
+    }
+}
+
+

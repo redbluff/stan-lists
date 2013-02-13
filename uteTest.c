@@ -137,7 +137,55 @@ void testPop(void) {
 }
 
 
+/*
+ * testInsertNth
+ * Tests the various scenarios for InsertNth.
+ */
+void testInsertNth(void) {
+    printf("Starting testInsertNth.\n");
 
+    //No list
+    struct node* list = NULL;
+    printf("Next message should be a list length error...\n");
+    InsertNth(&list, 23, 42);
+    assert(list == NULL);
+
+    //Build list and insert at head.
+    list = BuildOneTwoThree();
+    struct node* oldHead = list;
+    InsertNth(&list, 0, 42);
+    printf("List should be '42 1 2 3'... ");
+    print(list);
+    assert(length(list) == 4);
+    assert(oldHead != list);
+
+    //Insert at end
+    oldHead = list;
+    InsertNth(&list, 4, 666);
+    printf("List should be '42 1 2 3 666'... ");
+    print(list);
+    assert(length(list) == 5);
+    assert(oldHead == list);
+
+    //Insert in middle
+    InsertNth(&list, 2, 13);
+    printf("List should be '42 1 13 2 3 666'... ");
+    print(list);
+    assert(length(list) == 6);
+    assert(oldHead == list);
+
+
+    //Now big index
+    printf("Next message should be a list length error...\n");
+    InsertNth(&list, 23, 42);
+    assert(list == oldHead);
+    assert(length(list) == 6);
+
+    DeleteList(&list);
+    printf("InsertNth test completed.\n");
+}
+
+    
 /*
  * main
  * main program - duh
@@ -153,6 +201,7 @@ int main(int argc, char** argv) {
     testGetNth();
     testDeleteList();
     testPop();
+    testInsertNth();
     printf("Ended uteTest.c\n");
     return 0;
 }
