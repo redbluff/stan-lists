@@ -252,4 +252,31 @@ void InsertSort(struct node** headRef) {
 }
 
 
+/*
+ * Append
+ * Appends list B to List A, setting B to NULL on return
+ */
+void Append(struct node** aRef, struct node** bRef) {
+    //Check if A is empty
+    if (!(*aRef)) {
+        *aRef = *bRef;
+        *bRef = NULL;
+        return;
+    }
+
+    //Check if B is NULL
+    if (!(*bRef)) {
+        return;
+    }
+
+    //Walk list A until end and then splice in list B
+    struct node* current = *aRef;
+    while(current->next) {
+        current = current->next;
+    }
+    current->next = *bRef;
+    *bRef = NULL;
+}
+
+
 

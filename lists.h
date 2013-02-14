@@ -44,3 +44,7 @@ void SortedInsert(struct node** headRef, struct node* newNode);
 
 //Problem 7 - InsertSort
 void InsertSort(struct node** headRef);
+
+
+//Problem 8 - Append
+void Append(struct node** aRef, struct node** bRef);

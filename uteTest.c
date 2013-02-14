@@ -284,6 +284,49 @@ void testInsertSort(void) {
     printf("InsertSort testing complete.\n");
 }
 
+   
+/*
+ * testAppend
+ */
+void testAppend(void) {
+    printf("Starting testAppend.\n");
+
+    //First both lists empty
+    struct node* aList = NULL;
+    struct node* bList = NULL;
+    Append(&aList, &bList);
+    assert(!aList);
+    assert(!bList);
+    printf("Both lists empty OK.\n");
+
+    //Test B list Empty
+    aList = BuildOneTwoThree();
+    Append(&aList, &bList);
+    assert(!bList);
+    printf("If B empty OK list should be '1 2 3': ");
+    print(aList);
+
+    //Test list A Empty
+    Append(&bList, &aList);
+    assert(!aList);
+    printf("If A empty OK list should be '1 2 3': ");
+    print(bList);
+
+    //Join 2 lists
+    push(&aList, 4);
+    push(&aList, 5);
+    push(&aList, 6);
+    assert(length(aList) == 3);
+    Append(&aList, &bList);
+    assert(!bList);
+    assert(length(aList) == 6);
+    printf("append OK if list is '6 5 4 1 2 3': ");
+    print(aList);
+    DeleteList(&aList);
+
+    printf("Append testing finished.\n");
+}
+
     
 
 /*
@@ -304,6 +347,7 @@ int main(int argc, char** argv) {
     testInsertNth();
     testSortedInsert();
     testInsertSort();
+    testAppend();
     printf("Ended uteTest.c\n");
     return 0;
 }
