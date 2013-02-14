@@ -198,3 +198,31 @@ void InsertNth(struct node** headRef, int index, int data) {
 }
 
 
+/*
+ * SortedInsert
+ * Inserts node into monotonically ascending list.
+ *
+ * Assumes list is sorted ascending and that dupes are allowed.
+ */ 
+void SortedInsert(struct node** headRef, struct node* newNode) {
+    struct node* current = *headRef;
+    struct node* prev = NULL;
+    int data = newNode->data;
+
+    //Walk the list until we find the insertion point, unless list is empty
+    if (current) {
+        while(current && current->data < data) {
+            prev = current;
+            current = current->next;
+        }
+    }
+
+    //If it is at the start of the list we need to fix the head pointer
+    if (!prev) {
+        *headRef = newNode;
+    } else {
+        prev->next = newNode;
+    }
+    newNode->next = current;
+}
+

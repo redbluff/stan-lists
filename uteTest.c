@@ -6,6 +6,7 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <assert.h>
 #include "lists.h"
 
@@ -187,6 +188,59 @@ void testInsertNth(void) {
 
     
 /*
+ * testSortedInsert
+ * tests the SortedInsert function
+ */
+void testSortedInsert(void) {
+    printf("Test SortedInsert started.\n");
+
+    //Empty list
+    struct node* list = NULL;
+    struct node* node = (struct node*)malloc(sizeof(struct node));
+    assert(node != NULL);
+    node->data = 1;
+    SortedInsert(&list, node);
+    assert(length(list) == 1);
+    printf("List should be '1'...");
+    print(list);
+
+    //Insert at head of list
+    DeleteList(&list);
+    list = BuildOneTwoThree();
+    node = (struct node*)malloc(sizeof(struct node));
+    assert(node != NULL);
+    node->data = 1;
+    SortedInsert(&list, node);
+    assert(list == node);
+    assert(length(list) == 4);
+    printf("List should be '1 1 2 3'...");
+    print(list);
+
+    //Insert at middle of list
+    node = (struct node*)malloc(sizeof(struct node));
+    assert(node != NULL);
+    node->data = 2;
+    SortedInsert(&list, node);
+    assert(length(list) == 5);
+    printf("List should be '1 1 2 2 3'...");
+    print(list);
+
+    //Insert at end of list
+    node = (struct node*)malloc(sizeof(struct node));
+    assert(node != NULL);
+    node->data = 42;
+    SortedInsert(&list, node);
+    assert(length(list) == 6);
+    printf("List should be '1 1 2 2 3 42'...");
+    print(list);
+
+    DeleteList(&list);
+    printf("SortedInsert tests ended.\n");
+}
+
+
+
+/*
  * main
  * main program - duh
  */
@@ -202,6 +256,7 @@ int main(int argc, char** argv) {
     testDeleteList();
     testPop();
     testInsertNth();
+    testSortedInsert();
     printf("Ended uteTest.c\n");
     return 0;
 }

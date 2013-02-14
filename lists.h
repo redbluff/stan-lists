@@ -38,3 +38,6 @@ int Pop(struct node** headRef);
 
 //Problem 5 - InsertNth
 void InsertNth(struct node** headRef, int index, int data);
+
+//Problem 6 - SortedInsert
+void SortedInsert(struct node** headRef, struct node* newNode);
