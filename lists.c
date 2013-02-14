@@ -226,3 +226,30 @@ void SortedInsert(struct node** headRef, struct node* newNode) {
     newNode->next = current;
 }
 
+
+
+/*
+ * InsertSort
+ * Sorts a list in place using pointer manipulation
+ */
+void InsertSort(struct node** headRef) {
+    //If an empty list simply return
+    if (!headRef) {
+        return;
+    }
+
+    struct node* sortedList = NULL;
+    struct node* current = *headRef;
+
+    //Bump the head and then add the current to the new list
+    while(current) {
+        *headRef = current->next;
+        current->next = NULL;
+        SortedInsert(&sortedList, current);
+        current = *headRef;
+    }
+    *headRef = sortedList;
+}
+
+
+

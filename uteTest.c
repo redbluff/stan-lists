@@ -239,6 +239,52 @@ void testSortedInsert(void) {
 }
 
 
+/*
+ * testInsertSort
+ * Test no list, one item, many, plus already sorted
+ */
+void testInsertSort(void) {
+    printf("Starting testInsertSort.\n");
+
+    struct node* list = NULL;
+    InsertSort(&list);
+    assert(!list);
+    printf("Sorted empty list ok.\n");
+
+    //Test Single Item List
+    list = (struct node*)malloc(sizeof(struct node));
+    list->data = 42;
+    InsertSort(&list);
+    assert(list->data = 42);
+    printf("List should be '42'... ");
+    print(list);
+
+    //Test Multiple already sorted list
+    DeleteList(&list);
+    list = BuildOneTwoThree();
+    InsertSort(&list);
+    assert(list);
+    printf("List should be '1 2 3'... ");
+    print(list);
+    DeleteList(&list);
+
+    //Sort list, generate random 10 item list
+    for(int i = 0; i < 10; i++) {
+        push(&list, rand()%100);
+    }
+    printf("original list is: ");
+    print(list);
+    InsertSort(&list);
+    assert(length(list) == 10);
+    assert(list);
+    printf("Check that the 10 items are in ascending order: ");
+    print(list);
+    DeleteList(&list);
+
+    printf("InsertSort testing complete.\n");
+}
+
+    
 
 /*
  * main
@@ -257,6 +303,7 @@ int main(int argc, char** argv) {
     testPop();
     testInsertNth();
     testSortedInsert();
+    testInsertSort();
     printf("Ended uteTest.c\n");
     return 0;
 }

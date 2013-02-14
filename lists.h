@@ -41,3 +41,6 @@ void InsertNth(struct node** headRef, int index, int data);
 
 //Problem 6 - SortedInsert
 void SortedInsert(struct node** headRef, struct node* newNode);
+
+//Problem 7 - InsertSort
+void InsertSort(struct node** headRef);
