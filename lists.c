@@ -365,4 +365,28 @@ void MoveNode(struct node** destRef, struct node** srcRef) {
 
 
 
+/*
+ * AlternatingSplit
+ * Splits a list into two alternating elements. New lists can be in any order.
+ */
+void AlternatingSplit(struct node* source, struct node** aRef, struct node** bRef)  {
+    //Set the initial refs
+    *aRef = source;
+    *bRef = NULL;
+
+    //If the source is 0 or 1 nodes can just return
+    if (!(source && source->next)) {
+        return;
+    }
+
+    //Walk the source, alternating the elements
+    while(source) {
+        MoveNode(aRef, &source);
+        if (source) {
+            MoveNode(bRef, &source);
+        }
+    }
+}
+
+
 

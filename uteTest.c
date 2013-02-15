@@ -490,6 +490,57 @@ void testMoveNode(void) {
 }
 
 
+/*
+ * testAlternatingSPlit
+ */
+void testAlternatingSplit(void) {
+    printf("Starting testAlternatingSplit.\n");
+
+    struct node* src = NULL;
+    struct node* aList = NULL;
+    struct node* bList = NULL;
+
+    AlternatingSplit(src, &aList, &bList);
+    assert(!aList);
+    assert(!bList);
+    printf("Empty source test OK.\n");
+
+    push(&src, 42);
+    AlternatingSplit(src, &aList, &bList);
+    assert(length(aList) == 1);
+    assert(!bList);
+    printf("One node source test OK.\n");
+
+    //Test multiple split odd
+    DeleteList(&aList);
+    src = BuildOneTwoThree();
+    AlternatingSplit(src, &aList, &bList);
+    assert(length(aList) == 2);
+    assert(length(aList) == 1);
+    printf("A list should be '3 1': ");
+    print(aList);
+    printf("B list should be '2': ");
+    print(bList);
+
+    //Test multiple split even
+    DeleteList(&aList);
+    DeleteList(&bList);
+    src = BuildOneTwoThree();
+    push(&src, 42);
+    AlternatingSplit(src, &aList, &bList);
+    assert(length(aList) == 2);
+    assert(length(aList) == 2);
+    printf("A list should be '2 42': ");
+    print(aList);
+    printf("B list should be '3 1': ");
+    print(bList);
+
+    DeleteList(&aList);
+    DeleteList(&bList);
+    printf("AlternatingSplit testing done.");
+}
+
+
 
 /*
  * main
@@ -513,6 +564,7 @@ int main(int argc, char** argv) {
     testFrontBackSplit();
     testRemoveDuplicates();
     testMoveNode();
+    testAlternatingSplit();
     printf("Ended uteTest.c\n");
     return 0;
 }
