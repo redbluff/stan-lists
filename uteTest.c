@@ -453,6 +453,44 @@ void testRemoveDuplicates(void) {
     printf("RemoveDuplicates testing end.\n");
 }
 
+
+/*
+ * testMoveNode
+ */
+void testMoveNode(void) {
+    printf("Start MoveNode tests.\n");
+
+    struct node* src = NULL;
+    struct node* dest = BuildOneTwoThree();
+
+    MoveNode(&dest, &src);
+    assert(length(dest) == 3);
+    assert(!src);
+
+    push(&src, 42);
+    MoveNode(&dest, &src);
+    assert(length(dest) == 4);
+    assert(!src);
+    printf("one node src, dest should be '42 1 2 3': ");
+    print(dest);
+
+    push(&src, 13);
+    push(&src, 4);
+    MoveNode(&dest, &src);
+    assert(length(dest) == 5);
+    assert(length(src) == 1);
+    printf("Two node src, dest should be '4 42 1 2 3': ");
+    print(dest);
+    printf("Twi node src, src should be '13': ");
+    print(src);
+
+    DeleteList(&dest);
+    DeleteList(&src);
+    printf("MoveNode test completed.");
+}
+
+
+
 /*
  * main
  * main program - duh
@@ -474,6 +512,7 @@ int main(int argc, char** argv) {
     testAppend();
     testFrontBackSplit();
     testRemoveDuplicates();
+    testMoveNode();
     printf("Ended uteTest.c\n");
     return 0;
 }

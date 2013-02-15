@@ -54,3 +54,6 @@ void FrontBackSplit(struct node* source, struct node** frontRef, struct node** b
 
 //Problem 10 - RemoveDuplicates
 void RemoveDuplicates(struct node* head);
+
+//Problem 11 - MoveNode
+void MoveNode(struct node** destRef, struct node** srcRef);

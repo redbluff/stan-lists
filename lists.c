@@ -345,3 +345,24 @@ void RemoveDuplicates(struct node* head) {
 }
 
 
+/*
+ * MoveNode
+ * Moves the first node of src to dest
+ */
+void MoveNode(struct node** destRef, struct node** srcRef) {
+
+    //If src is empty then just return
+    if (!(*srcRef)) {
+        return;
+    }
+
+    //Simply pop the first node off the src and add it to the dest
+    struct node* moved = *srcRef;
+    *srcRef = moved->next;
+    moved->next = *destRef;
+    *destRef = moved;
+}
+
+
+
+
