@@ -279,4 +279,69 @@ void Append(struct node** aRef, struct node** bRef) {
 }
 
 
+/*
+ * FrontBackSplit
+ * Takes a source list and splits half way. If an odd node exists, it goes to
+ * the front list. Note this invalidates the source list.
+ */
+void FrontBackSplit(struct node* source, struct node** frontRef, struct node** backRef) {
+    *frontRef = *backRef = NULL;
+
+    //If an empty list, nothing to do
+    if (!source) {
+        return;
+    }
+
+    //Init the two pointers, slow to node 0, fast to node 1
+    struct node* slowPtr = source;
+    struct node* fastPtr = source->next;
+
+    //If the list is only one node, return now
+    if (!fastPtr) {
+        *frontRef = source;
+        return;
+    }
+
+    //Walk the list, with the fast pointer jumping 2 nodes
+    while(fastPtr->next) {
+        slowPtr = slowPtr->next;
+        fastPtr = fastPtr->next;
+        if (fastPtr && fastPtr->next) {
+            fastPtr = fastPtr->next;
+        }
+    }
+
+    //Set the list pointers and split the lists
+    *frontRef = source;
+    *backRef = slowPtr->next;
+    slowPtr->next = NULL;
+}
+
+
+/*
+ * RemoveDuplicates
+ * Removes duplicate data nodes from a monotonically ascending list.
+ */
+void RemoveDuplicates(struct node* head) {
+
+    //If a zero or single node list, then return as nothing to do
+    if (!(head && head->next)) {
+        return;
+    }
+
+    struct node* current = head;
+    struct node* delNode = NULL;
+
+    //Walk the list, deleting dupes as we go
+    while(current->next) {
+        if (current->data == current->next->data) {
+            delNode = current->next;
+            current->next = delNode->next;
+            free(delNode);
+        } else {
+            current = current->next;
+        }
+    }
+}
+
 

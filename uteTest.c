@@ -328,6 +328,130 @@ void testAppend(void) {
 }
 
     
+/*
+ * testFrontBackSplit
+ * Need to test 0, 1, 2, 3, 5, 6
+ */
+void testFrontBackSplit(void) {
+    printf("Testing FrontBackSplit.\n");
+    struct node* list = NULL;
+    struct node* front = NULL;
+    struct node* back = NULL;
+
+    //Empty test
+    FrontBackSplit(list, &front, &back);
+    assert(!front);
+    assert(!back);
+    printf("Empty list split ok.\n");
+
+    //1 node
+    push(&list, 42);
+    FrontBackSplit(list, &front, &back);
+    assert(length(front) == 1);
+    assert(!back);
+    printf("1 node Front list should be '42': ");
+    print(front);
+
+    //2 nodes
+    push(&list, 13);
+    FrontBackSplit(list, &front, &back);
+    assert(length(front) == 1);
+    assert(length(back) == 1);
+    printf("2 node Front list should be '13 ': ");
+    print(front);
+    printf("Back list should be '42 ': ");
+    print(back);
+    DeleteList(&front);
+    DeleteList(&back);
+
+    //3 nodes
+    list = BuildOneTwoThree();
+    FrontBackSplit(list, &front, &back);
+    assert(length(front) == 2);
+    assert(length(back) == 1);
+    printf("3 node Front list should be '1 2': ");
+    print(front);
+    printf("Back list should be '3': ");
+    print(back);
+    DeleteList(&front);
+    DeleteList(&back);
+
+    //5 nodes
+    list = BuildOneTwoThree();
+    push(&list, 0);
+    push(&list, -1);
+    FrontBackSplit(list, &front, &back);
+    assert(length(front) == 3);
+    assert(length(back) == 2);
+    printf("5 node Front list should be '-1 0 1': ");
+    print(front);
+    printf("Back list should be '2 3': ");
+    print(back);
+    DeleteList(&front);
+    DeleteList(&back);
+
+    //6 nodes
+    list = BuildOneTwoThree();
+    push(&list, 0);
+    push(&list, -1);
+    push(&list, -2);
+    FrontBackSplit(list, &front, &back);
+    assert(length(front) == 3);
+    assert(length(back) == 3);
+    printf("6 node Front list should be '-2 -1 0': ");
+    print(front);
+    printf("Back list should be '1 2 3': ");
+    print(back);
+    DeleteList(&front);
+    DeleteList(&back);
+
+    printf("FrontBackSplit tests finished.\n");
+}
+
+
+/*
+ * testRemoveDuplicates
+ * Need to test 0, 1 and other nodes
+ */
+void testRemoveDuplicates(void) {
+    printf("start testRemoveDuplicates.\n");
+
+    struct node* list = NULL;
+    RemoveDuplicates(list);
+    assert(!list);
+    printf("empty list OK.\n");
+
+    //test 1 node
+    push(&list, 42);
+    RemoveDuplicates(list);
+    assert(length(list) == 1);
+    printf("One item list OK.\n");
+
+    //test 3 node 1,2,3
+    DeleteList(&list);
+    list = BuildOneTwoThree();
+    RemoveDuplicates(list);
+    assert(length(list) == 3);
+    printf("3 node list should be '1 2 3': ");
+    print(list);
+
+    //Test list with multiple dupes
+    struct node* list2 = BuildOneTwoThree();
+    Append(&list, &list2);
+    push(&list, 4);
+    push(&list, 5);
+    push(&list, 5);
+    InsertSort(&list);
+    printf("Multiple list before: ");
+    print(list);
+    RemoveDuplicates(list);
+    assert(length(list) == 5);
+    printf("Multiple list after should be '1 2 3 4 5': ");
+    print(list);
+
+    DeleteList(&list);
+    printf("RemoveDuplicates testing end.\n");
+}
 
 /*
  * main
@@ -348,6 +472,8 @@ int main(int argc, char** argv) {
     testSortedInsert();
     testInsertSort();
     testAppend();
+    testFrontBackSplit();
+    testRemoveDuplicates();
     printf("Ended uteTest.c\n");
     return 0;
 }

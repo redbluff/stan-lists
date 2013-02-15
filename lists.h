@@ -48,3 +48,9 @@ void InsertSort(struct node** headRef);
 
 //Problem 8 - Append
 void Append(struct node** aRef, struct node** bRef);
+
+//Problem 9 - FrontBackSplit
+void FrontBackSplit(struct node* source, struct node** frontRef, struct node** backRef);
+
+//Problem 10 - RemoveDuplicates
+void RemoveDuplicates(struct node* head);
