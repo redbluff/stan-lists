@@ -541,6 +541,74 @@ void testAlternatingSplit(void) {
 }
 
 
+/*
+ * testShuffleMerge
+ */
+void testShuffleMerge(void) {
+    printf("start testShuffleMerge.\n");
+    struct node* aList = NULL;
+    struct node* bList = NULL;
+    struct node* mList = ShuffleMerge(aList, bList);
+    assert(!mList);
+    printf("Null input lists test OK.\n");
+
+    //Test A empty
+    bList = BuildOneTwoThree();
+    mList = ShuffleMerge(aList, bList);
+    assert(length(mList) == 3);
+    printf("A Empty test. List should be '1 2 3': ");
+    print(mList);
+    DeleteList(&mList);
+
+    //Test B Empty
+    bList = NULL;
+    aList = BuildOneTwoThree();
+    mList = ShuffleMerge(aList, bList);
+    assert(length(mList) == 3);
+    assert(!bList);
+    printf("B Empty test. List should be '1 2 3': ");
+    print(mList);
+    DeleteList(&mList);
+
+    //Merge A and B - equal length
+    aList = BuildOneTwoThree();
+    push(&bList, 6);
+    push(&bList, 5);
+    push(&bList, 4);
+    mList = ShuffleMerge(aList, bList);
+    assert(length(mList) == 6);
+    printf("Equal Length test. List should be '1 4 2 5 3 6': ");
+    print(mList);
+    DeleteList(&mList);
+    
+    //Merge A and B - A longer
+    bList = NULL;
+    aList = BuildOneTwoThree();
+    push(&aList, 42);
+    push(&bList, 5);
+    push(&bList, 4);
+    mList = ShuffleMerge(aList, bList);
+    assert(length(mList) == 6);
+    printf("Merge, A Longer. List should be '42 4 1 5 2 3': ");
+    print(mList);
+    DeleteList(&mList);
+
+    //Merge A and B - B longer
+    aList = NULL;
+    bList = BuildOneTwoThree();
+    push(&bList, 42);
+    push(&aList, 5);
+    push(&aList, 4);
+    mList = ShuffleMerge(aList, bList);
+    assert(length(mList) == 6);
+    printf("Merge, B longer. List should be '4 42 5 1 2 3': ");
+    print(mList);
+    DeleteList(&mList);
+
+    printf("testShuffleMerge end.\n");
+}
+
+
 
 /*
  * main
@@ -565,6 +633,7 @@ int main(int argc, char** argv) {
     testRemoveDuplicates();
     testMoveNode();
     testAlternatingSplit();
+    testShuffleMerge();
     printf("Ended uteTest.c\n");
     return 0;
 }
