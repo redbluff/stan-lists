@@ -389,4 +389,49 @@ void AlternatingSplit(struct node* source, struct node** aRef, struct node** bRe
 }
 
 
+/*
+ * ShuffleMerge
+ * Takes two arrays and alternatly sorts them into one merged array.
+ *
+ * Invalidates original array pointers as it uses the original nodes
+ */
+struct node* ShuffleMerge(struct node* a, struct node* b) {
+    //Use a dummy node to set up tail appends
+    struct node dummy;
+    struct node* tail = &dummy;
+    dummy.next = NULL;
+
+    /* After viewing the solution provided this is a pretty poor solution.
+     * The null case is handled incorrectly, instead of walking the remaining
+     * list it should simply apply the pointer and be done. The flag thing
+     * is completely unnecessary...having said that it does work OK :)
+     */
+
+    int aDone = 0;
+    int bDone = 0;
+    if (!a) {
+        aDone = 1;
+    }
+    if (!b) {
+        bDone = 1;
+    }
+    while (!(aDone && bDone)) {
+        if (!aDone) {
+            MoveNode(&(tail->next), &a);
+            tail = tail->next;
+            if (!a) {
+                aDone = 1;
+            }
+        }
+        if (!bDone) {
+            MoveNode(&(tail->next), &b);
+            tail = tail->next;
+            if (!b) {
+                bDone = 1;
+            }
+        }
+    }
+    return dummy.next;
+}
+
 

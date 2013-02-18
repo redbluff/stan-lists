@@ -60,3 +60,9 @@ void MoveNode(struct node** destRef, struct node** srcRef);
 
 //Problem 12 - Alternating Split
 void AlternatingSplit(struct node* source, struct node** aRef, struct node** bRef); 
+
+//Problem 13 - ShuffleMerge
+struct node* ShuffleMerge(struct node* a, struct node* b);
+
+
+//
