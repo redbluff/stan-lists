@@ -57,3 +57,6 @@ void RemoveDuplicates(struct node* head);
 
 //Problem 11 - MoveNode
 void MoveNode(struct node** destRef, struct node** srcRef);
+
+//Problem 12 - Alternating Split
+void AlternatingSplit(struct node* source, struct node** aRef, struct node** bRef); 
