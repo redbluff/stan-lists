@@ -516,7 +516,7 @@ void testAlternatingSplit(void) {
     src = BuildOneTwoThree();
     AlternatingSplit(src, &aList, &bList);
     assert(length(aList) == 2);
-    assert(length(aList) == 1);
+    assert(length(bList) == 1);
     printf("A list should be '3 1': ");
     print(aList);
     printf("B list should be '2': ");
@@ -537,7 +537,7 @@ void testAlternatingSplit(void) {
 
     DeleteList(&aList);
     DeleteList(&bList);
-    printf("AlternatingSplit testing done.");
+    printf("AlternatingSplit testing done.\n");
 }
 
 

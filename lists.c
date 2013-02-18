@@ -371,11 +371,11 @@ void MoveNode(struct node** destRef, struct node** srcRef) {
  */
 void AlternatingSplit(struct node* source, struct node** aRef, struct node** bRef)  {
     //Set the initial refs
-    *aRef = source;
+    *aRef = NULL;
     *bRef = NULL;
 
     //If the source is 0 or 1 nodes can just return
-    if (!(source && source->next)) {
+    if (!source) {
         return;
     }
 
